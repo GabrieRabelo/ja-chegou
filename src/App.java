@@ -3,8 +3,11 @@ import java.util.Scanner;
 
 public class App {
 
-    public static void main(String[] args) {
+    public App() {
+        //Construtor vazio
+    }
 
+    public void run() {
         Scanner in = new Scanner(System.in);
         int opcao = 1;
 
@@ -43,7 +46,7 @@ public class App {
     /**
      * Exemplo de método chamado pelo menu
      */
-    public static void metodoUm() {
+    public void metodoUm() {
         System.out.println("Método 1 executado com sucesso");
     }
 
