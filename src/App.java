@@ -3,8 +3,10 @@ import java.util.Scanner;
 
 public class App {
 
+    private ListaDeMoradores lista;
+
     public App() {
-        //Construtor vazio
+        lista = new ListaDeMoradores();
     }
 
     public void run() {

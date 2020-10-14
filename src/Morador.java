@@ -1,10 +1,10 @@
 public class Morador {
 
     private String nome;
-    private int rg;
+    private long rg;
     private int numeroApartamento;
 
-    public Morador(String nome, int rg, int numeroApartamento) {
+    public Morador(String nome, long rg, int numeroApartamento) {
         this.nome = nome;
         this.rg = rg;
         this.numeroApartamento = numeroApartamento;
@@ -18,7 +18,7 @@ public class Morador {
         this.nome = novoNome;
     }
 
-    public int getRg() {
+    public long getRg() {
         return rg;
     }
 
@@ -32,6 +32,6 @@ public class Morador {
 
     @Override
     public String toString() {
-        return "Nome: " + nome + ", RG: " + rg + "Apto: " + numeroApartamento;
+        return "Nome: " + nome + ", RG: " + rg + ", Apto: " + numeroApartamento;
     }
 }
