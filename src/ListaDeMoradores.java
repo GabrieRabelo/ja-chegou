@@ -14,6 +14,10 @@ public class ListaDeMoradores {
         return true;
     }
 
+    public int getSize(){
+        return lista.size();
+    }
+
     @Override
     public String toString() {
         String listaDeMoradores = "===== ListaDeMoradores =====\n";
