@@ -21,7 +21,7 @@ public class App {
 
             System.out.println();
             System.out.println("Escolha uma das opções abaixo: ");
-            System.out.println("1- Testar método 1");
+            System.out.println("1- Listar Moradores");
             System.out.println("0- Sair");
 
             try{       // Impede que usuário digite letra
@@ -36,7 +36,7 @@ public class App {
 
             switch (opcao){
                 case 1:
-                    metodoUm(); // Executa método 1
+                    listarMoradores();
                     break;
                 case 0:     // Sai do menu, encerra programa
                     break;
@@ -46,12 +46,10 @@ public class App {
         }
     }
 
-    /**
-     * Exemplo de método chamado pelo menu
-     */
-    public void metodoUm() {
-        System.out.println("Método 1 executado com sucesso");
+    private void listarMoradores() {
+        System.out.println(listaDeMoradores);
     }
+
 
     private void populaApp(){
         populaLista();
@@ -82,5 +80,6 @@ public class App {
 
         System.out.println("Foram adicionados " + listaDeMoradores.getSize() + " moradores na lista de moradores.");
     }
+
 
 }
