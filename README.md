@@ -6,7 +6,7 @@ Projeto básico para prática do gitflow
 
 ### 1) Escolha um card no Kanban
 - KANBAN: https://github.com/GabrieRabelo/ja-chegou/projects/1
-- Exemplo: ```1. Adicionar botão de envio de email```
+- Exemplo: ```4. Implementar lista de moradores```
 
 ### 2) Crie uma branch nova com a seguinte nomenclatura
 
