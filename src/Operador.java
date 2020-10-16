@@ -20,7 +20,6 @@ public class Operador{
     public int getId(){
         return id;
     }
-
     @Override
     public String toString() {
         return "Operador: " + name + " - ID: " + id;
