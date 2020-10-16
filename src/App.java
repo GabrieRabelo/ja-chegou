@@ -9,7 +9,24 @@ public class App {
         listaDeMoradores = new ListaDeMoradores();
         populaApp();
     }
+/*
+     1 Operador
+1.1 Escolher operador.
+1.2 Incluir novo operador.
 
+ 2. Entrega
+2.1 Registrar Entrega
+2.2 Registrar Retirada
+2.3 Procurar entregas pela descrição
+2.4 Listar entregas não retiradas
+2.5 Gerar relatório de entregas com data inicial e data final
+
+ 3. Moradores
+3.1. Incluir novo Morador
+3.2. Listar Todos Moradores
+
+Sair
+ */
     public void run() {
         Scanner in = new Scanner(System.in);
         int opcao = 1;
@@ -21,8 +38,22 @@ public class App {
 
             System.out.println();
             System.out.println("Escolha uma das opções abaixo: ");
-            System.out.println("1- Listar Moradores");
-            System.out.println("0- Sair");
+            System.out.println("---------- Operador ----------");
+            System.out.println("1 - Escolher operador");
+            System.out.println("2 - Incluir novo operador");
+
+            System.out.println("----------- Entrega -----------");
+            System.out.println("3 - Registrar Entrega");
+            System.out.println("4 - Registrar Retirada");
+            System.out.println("5 - Procurar entregas pela descrição");
+            System.out.println("6 - Listar entregas não retiradas");
+            System.out.println("7 - Gerar relatório de entregas com data inicial e data final");
+
+            System.out.println("--------- Moradores -----------");
+            System.out.println("8 - Incluir novo Morador");
+            System.out.println("9 - Listar Todos Moradores");
+
+            System.out.println("0 - sair");
 
             try{       // Impede que usuário digite letra
                 opcao = in.nextInt();
@@ -35,7 +66,28 @@ public class App {
 
 
             switch (opcao){
-                case 1:
+                case 1 :
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                case 9:
                     listarMoradores();
                     break;
                 case 0:     // Sai do menu, encerra programa
