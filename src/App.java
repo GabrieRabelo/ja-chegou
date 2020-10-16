@@ -2,6 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
+    private final Scanner in = new Scanner(System.in);
 
     private ListaDeMoradores listaDeMoradores;
     private ListaDeOperadores listaDeOperadores;
@@ -14,7 +15,6 @@ public class App {
     }
 
     public void run() {
-        Scanner in = new Scanner(System.in);
         int opcao = 1;
 
         System.out.println("\nBem vindo ao App já chegou do Condomínio ES");
@@ -57,6 +57,7 @@ public class App {
                     escolheOperador();                
                     break;
                 case 2:
+                    novoOperador();
                     break;
                 case 3:
                     break;
@@ -85,7 +86,6 @@ public class App {
     }
 
     private void escolheOperador(){
-        Scanner in = new Scanner(System.in);
         System.out.println(listaDeOperadores.toString());
         System.out.println("\n--------Escolha um operador pelas suas iniciais. ex: GR--------");
         String inicialEsc = in.nextLine();
@@ -96,6 +96,17 @@ public class App {
         }
         else
             System.out.println("Operador com iniciais " + inicialEsc + " não encontrado.");
+    }
+
+    private void novoOperador(){
+        System.out.println("Informe o nome e último nome do novo operador\n");
+        String nome = in.nextLine();
+        if(nome.split(" ").length == 2){
+            listaDeOperadores.add(new Operador(nome));
+            System.out.println(nome + " adicionado a lista de operadores\n");
+        }
+        else
+            System.out.println("Nome inválido.");
     }
 
 
