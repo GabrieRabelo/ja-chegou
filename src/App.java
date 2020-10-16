@@ -4,40 +4,27 @@ import java.util.Scanner;
 public class App {
 
     private ListaDeMoradores listaDeMoradores;
+    private ListaDeOperadores listaDeOperadores;
+    private Operador operadorAtual;
 
     public App() {
         listaDeMoradores = new ListaDeMoradores();
+        listaDeOperadores = new ListaDeOperadores();
         populaApp();
     }
-/*
-     1 Operador
-1.1 Escolher operador.
-1.2 Incluir novo operador.
 
- 2. Entrega
-2.1 Registrar Entrega
-2.2 Registrar Retirada
-2.3 Procurar entregas pela descrição
-2.4 Listar entregas não retiradas
-2.5 Gerar relatório de entregas com data inicial e data final
-
- 3. Moradores
-3.1. Incluir novo Morador
-3.2. Listar Todos Moradores
-
-Sair
- */
     public void run() {
         Scanner in = new Scanner(System.in);
         int opcao = 1;
 
-        System.out.println("Bem vindo ao App já chegou do Condomínio ES");
+        System.out.println("\nBem vindo ao App já chegou do Condomínio ES");
         System.out.println("===============================");
 
         while(opcao!= 0){       // Repetição do menu
 
             System.out.println();
-            System.out.println("Escolha uma das opções abaixo: ");
+            System.out.println("Escolha uma das opções abaixo: \n");
+
             System.out.println("---------- Operador ----------");
             System.out.println("1 - Escolher operador");
             System.out.println("2 - Incluir novo operador");
@@ -53,7 +40,7 @@ Sair
             System.out.println("8 - Incluir novo Morador");
             System.out.println("9 - Listar Todos Moradores");
 
-            System.out.println("0 - sair");
+            System.out.println("0 - sair\n");
 
             try{       // Impede que usuário digite letra
                 opcao = in.nextInt();
@@ -67,10 +54,9 @@ Sair
 
             switch (opcao){
                 case 1 :
-
+                    escolheOperador();                
                     break;
                 case 2:
-
                     break;
                 case 3:
                     break;
@@ -98,6 +84,21 @@ Sair
         }
     }
 
+    private void escolheOperador(){
+        Scanner in = new Scanner(System.in);
+        System.out.println(listaDeOperadores.toString());
+        System.out.println("\n--------Escolha um operador pelas suas iniciais. ex: GR--------");
+        String inicialEsc = in.nextLine();
+        Operador operador =listaDeOperadores.getOperadorInicial(inicialEsc);
+        if(operador != null){
+            operadorAtual = operador;
+            System.out.println("Operador atual: " + operadorAtual.getName() + " (" + operadorAtual.getIniciais() + ")");
+        }
+        else
+            System.out.println("Operador com iniciais " + inicialEsc + " não encontrado.");
+    }
+
+
     private void listarMoradores() {
         System.out.println(listaDeMoradores);
     }
@@ -105,6 +106,29 @@ Sair
 
     private void populaApp(){
         populaLista();
+        populaOperadores();
+        populaOperadorAtual();
+    }
+
+
+    private void populaOperadorAtual(){
+        operadorAtual = listaDeOperadores.getOperadorInicial("RR");
+        System.out.println("Operador atual: " + operadorAtual.getName());
+    }
+
+    private void populaOperadores(){
+        Operador rabelo = new Operador("Gabriel Rabelo");
+        Operador roberto = new Operador("Roberto Resende");
+        Operador adriana = new Operador("Adriana Serpa");
+        Operador luiz = new Operador("Luiz Reis");
+
+        listaDeOperadores.add(rabelo);
+        listaDeOperadores.add(roberto);
+        listaDeOperadores.add(adriana);
+        listaDeOperadores.add(luiz);
+
+        System.out.println("Foram adicionados " + listaDeOperadores.getContador() + " operadores na lista de operadores.");
+
     }
 
     private void populaLista(){
@@ -130,8 +154,6 @@ Sair
         listaDeMoradores.adicionaMorador(severo);
         listaDeMoradores.adicionaMorador(leonardo);
 
-        System.out.println("Foram adicionados " + listaDeMoradores.getSize() + " moradores na lista de moradores.");
+        System.out.println("\nForam adicionados " + listaDeMoradores.getSize() + " moradores na lista de moradores.");
     }
-
-
 }

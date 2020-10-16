@@ -1,27 +1,23 @@
 public class Operador{
     private String name;
-    private int id;
+    private String iniciais;
 
     // cName para construtorName
-    public Operador(String cName, int cId){
-        if(cId < 0){
-            throw new IllegalArgumentException("ID Inválido! Selecione um ID maior que zero");
-        }
+    public Operador(String cName){
         this.name = cName;
-        this.id = cId;
+        String[] vetorInicial = cName.split(" ");
+        this.iniciais = String.valueOf(vetorInicial[0].charAt(0)) + String.valueOf(vetorInicial[1].charAt(0));
     }
 
     public String getName(){
         return name;
     }
-    public void setId(int newId){
-        this.id = newId;
+    public String getIniciais(){
+        return iniciais;
     }
-    public int getId(){
-        return id;
-    }
+
     @Override
     public String toString() {
-        return "Operador: " + name + " - ID: " + id;
+        return "Operador: " + name + " - Iniciais: " + iniciais;
     }
 }

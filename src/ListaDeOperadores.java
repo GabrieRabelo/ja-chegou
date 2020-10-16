@@ -2,11 +2,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class ListaDeOperadores {
-    // Lista de Operadores principal
     private ArrayList<Operador> lista;
     private int contador;
 
-    // Construtor
     public ListaDeOperadores() {
         lista = new ArrayList<>();
     }
@@ -24,15 +22,13 @@ public class ListaDeOperadores {
         return lista;
     }
 
-    // Método para buscar operador específico pelo ID
-    public ArrayList<Operador> getOperadorID(int newID) {
-        ArrayList<Operador> list = new ArrayList();
+    public Operador getOperadorInicial(String iniciais) {
         for (Operador b : lista) {
-            if(b.getId() == newID){
-                list.add(b);
+            if(b.getIniciais().equalsIgnoreCase(iniciais)){
+                return b;
             }
         }
-        return list;
+        return null;
     }
 
     @Override
@@ -41,6 +37,6 @@ public class ListaDeOperadores {
         for (Operador operador: lista){
             op = op + operador + "\n";
         }
-        return "Lista De Operadores\n" + op;
+        return "---Lista de Operadores:\n" + op;
     }
 }
