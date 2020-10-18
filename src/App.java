@@ -76,6 +76,7 @@ public class App {
                 case 7:
                     break;
                 case 8:
+                    novoMorador();
                     break;
                 case 9:
                     listarMoradores();
@@ -112,23 +113,39 @@ public class App {
             System.out.println("Nome inválido.");
     }
 
+
     private void registraEntrega(){
         System.out.println("Informe a descrição da entrega\n");
         String descricao = in.nextLine();
         listaDeEntregas.adicionaEntrega(new Entrega(descricao,listaDeEntregas.getCount(), operadorAtual));
+    }
+    private void novoMorador(){
+        System.out.println("Informe o nome e ultimo nome do novo morador: \n");
+        String nome = in.nextLine();
+        System.out.println("Informe o RG do morador: \n");
+        long rg = in.nextLong();
+        System.out.println("Informe o numero do apartamento deste morador: \n");
+        int numAp = in.nextInt();
+
+        if(rg < 1 || numAp < 1){
+            System.out.println("RG ou numero de apartamento invalido (Usar inteiro positivo).");
+        }else{
+            listaDeMoradores.adicionaMorador(new Morador(nome,rg,numAp));
+            System.out.println(nome + " adicionado a lista de Moradores\n");
+
+        }
+
     }
 
     private void listarMoradores() {
         System.out.println(listaDeMoradores);
     }
 
-
     private void populaApp(){
         populaLista();
         populaOperadores();
         populaOperadorAtual();
     }
-
 
     private void populaOperadorAtual(){
         operadorAtual = listaDeOperadores.getOperadorInicial("RR");
