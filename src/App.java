@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -6,11 +8,13 @@ public class App {
 
     private ListaDeMoradores listaDeMoradores;
     private ListaDeOperadores listaDeOperadores;
+    private ListaDeEntregas listaDeEntregas;
     private Operador operadorAtual;
 
     public App() {
         listaDeMoradores = new ListaDeMoradores();
         listaDeOperadores = new ListaDeOperadores();
+        listaDeEntregas = new ListaDeEntregas();
         populaApp();
     }
 
@@ -60,12 +64,13 @@ public class App {
                     novoOperador();
                     break;
                 case 3:
+                    registraEntrega();
                     break;
                 case 4:
 
                     break;
                 case 5:
-
+                    listaEntregasPorDescricao();
                     break;
                 case 6:
 
@@ -73,6 +78,7 @@ public class App {
                 case 7:
                     break;
                 case 8:
+                    novoMorador();
                     break;
                 case 9:
                     listarMoradores();
@@ -110,17 +116,57 @@ public class App {
     }
 
 
+    private void registraEntrega(){
+        System.out.println("Informe a descrição da entrega\n");
+        String descricao = in.nextLine();
+        System.out.println("Informe o apartamento de destino\n");
+        String apDestino = in.nextLine();
+        listaDeEntregas.adicionaEntrega(new Entrega(descricao,apDestino,listaDeEntregas.getCount(), operadorAtual));
+    }
+
+    private void listaEntregasPorDescricao(){
+        System.out.println("Informe a descrição para pesquisa da entrega:\n");
+        String descricao = in.nextLine();
+        ArrayList subLista = listaDeEntregas.buscaPorDescricao(descricao);
+        if(!subLista.isEmpty()){
+            System.out.println(subLista);
+        }else{
+            System.out.println("Descrição não encontrada!");
+        }
+        }
+
+    private void novoMorador(){
+        System.out.println("Informe o nome e ultimo nome do novo morador: \n");
+        String nome = in.nextLine();
+        System.out.println("Informe o RG do morador: \n");
+        long rg = in.nextLong();
+        System.out.println("Informe o numero do apartamento deste morador: \n");
+        int numAp = in.nextInt();
+
+        if(rg < 1 || numAp < 1){
+            System.out.println("RG ou numero de apartamento invalido (Usar inteiro positivo).");
+        }else{
+            listaDeMoradores.adicionaMorador(new Morador(nome,rg,numAp));
+            System.out.println(nome + " adicionado a lista de Moradores\n");
+
+        }
+
+    }
+
+    private void listarEntregas(){
+        System.out.println(listaDeEntregas);
+    }
+
     private void listarMoradores() {
         System.out.println(listaDeMoradores);
     }
-
 
     private void populaApp(){
         populaLista();
         populaOperadores();
         populaOperadorAtual();
+        populaEntregas();
     }
-
 
     private void populaOperadorAtual(){
         operadorAtual = listaDeOperadores.getOperadorInicial("RR");
@@ -142,6 +188,27 @@ public class App {
 
     }
 
+    private void populaEntregas(){
+        Entrega caixaDeFerramentas = new Entrega("Caixa de ferramentas","34",listaDeEntregas.getCount(), operadorAtual);
+        caixaDeFerramentas.setData(LocalDateTime.of(2020,5,18,15,02));
+        listaDeEntregas.adicionaEntrega(caixaDeFerramentas);
+
+        Entrega escada = new Entrega("Escada","24",listaDeEntregas.getCount(),listaDeOperadores.getOperadorInicial("GR"));
+        escada.setData(LocalDateTime.of(2020,6,10,20,45));
+        listaDeEntregas.adicionaEntrega(escada);
+
+        Entrega envelope = new Entrega("Envelope grande","12",listaDeEntregas.getCount(),listaDeOperadores.getOperadorInicial("AS"));
+        envelope.setData(LocalDateTime.of(2020,6,14,9,10));
+        listaDeEntregas.adicionaEntrega(envelope);
+
+        Entrega monitor = new Entrega("Monitor LG","34",listaDeEntregas.getCount(),listaDeOperadores.getOperadorInicial("LR"));
+        monitor.setData(LocalDateTime.of(2020,8,19,15,00));
+        listaDeEntregas.adicionaEntrega(monitor);
+
+        Entrega bicicleta = new Entrega("Bicicleta","24",listaDeEntregas.getCount(),listaDeOperadores.getOperadorInicial("GR"));
+        bicicleta.setData(LocalDateTime.of(2020,10,10,16,45));
+        listaDeEntregas.adicionaEntrega(bicicleta);
+    }
     private void populaLista(){
         Morador velloso = new Morador("Gabriel Velloso" , 3464224754L, 24);
         Morador rabelo = new Morador("Gabriel Rabelo", 3456353333L, 12);
