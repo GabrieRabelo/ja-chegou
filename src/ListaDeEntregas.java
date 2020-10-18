@@ -20,6 +20,18 @@ public class ListaDeEntregas {
     public int getCount(){
         return count;
     }
+
+    public ArrayList<Entrega> buscaPorDescricao(String descricao){
+       ArrayList subLista = new ArrayList<Entrega>();
+
+        for (Entrega entrega : lista) {
+            if(entrega.getDescricao().contains(descricao)){
+                subLista.add(entrega);
+            }
+        }
+        return subLista;
+    }
+
     @Override
     public String toString() {
         String ret = "===== Lista de Entregas =====\n";

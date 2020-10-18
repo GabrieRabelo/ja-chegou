@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -69,7 +70,7 @@ public class App {
 
                     break;
                 case 5:
-
+                    listaEntregasPorDescricao();
                     break;
                 case 6:
 
@@ -122,6 +123,14 @@ public class App {
         String apDestino = in.nextLine();
         listaDeEntregas.adicionaEntrega(new Entrega(descricao,apDestino,listaDeEntregas.getCount(), operadorAtual));
     }
+
+    private void listaEntregasPorDescricao(){
+        System.out.println("Informe a descrição para pesquisa da entrega:\n");
+        String descricao = in.nextLine();
+        ArrayList subLista = listaDeEntregas.buscaPorDescricao(descricao);
+        System.out.println(subLista);
+    }
+
     private void novoMorador(){
         System.out.println("Informe o nome e ultimo nome do novo morador: \n");
         String nome = in.nextLine();
