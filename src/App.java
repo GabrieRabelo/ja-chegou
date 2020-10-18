@@ -74,6 +74,7 @@ public class App {
                     break;
                 case 8:
                     novoMorador();
+                    break;
                 case 9:
                     listarMoradores();
                     break;
