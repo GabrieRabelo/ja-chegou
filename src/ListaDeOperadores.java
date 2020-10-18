@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class ListaDeOperadores {
     private ArrayList<Operador> lista;
