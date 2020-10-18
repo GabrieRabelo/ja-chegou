@@ -6,11 +6,13 @@ public class App {
 
     private ListaDeMoradores listaDeMoradores;
     private ListaDeOperadores listaDeOperadores;
+    private ListaDeEntregas listaDeEntregas;
     private Operador operadorAtual;
 
     public App() {
         listaDeMoradores = new ListaDeMoradores();
         listaDeOperadores = new ListaDeOperadores();
+        listaDeEntregas = new ListaDeEntregas();
         populaApp();
     }
 
@@ -60,6 +62,7 @@ public class App {
                     novoOperador();
                     break;
                 case 3:
+                    registraEntrega();
                     break;
                 case 4:
 
@@ -109,6 +112,11 @@ public class App {
             System.out.println("Nome inválido.");
     }
 
+    private void registraEntrega(){
+        System.out.println("Informe a descrição da entrega\n");
+        String descricao = in.nextLine();
+        listaDeEntregas.adicionaEntrega(new Entrega(descricao,listaDeEntregas.getCount(), operadorAtual));
+    }
 
     private void listarMoradores() {
         System.out.println(listaDeMoradores);
