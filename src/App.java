@@ -128,8 +128,12 @@ public class App {
         System.out.println("Informe a descrição para pesquisa da entrega:\n");
         String descricao = in.nextLine();
         ArrayList subLista = listaDeEntregas.buscaPorDescricao(descricao);
-        System.out.println(subLista);
-    }
+        if(!subLista.isEmpty()){
+            System.out.println(subLista);
+        }else{
+            System.out.println("Descrição não encontrada!");
+        }
+        }
 
     private void novoMorador(){
         System.out.println("Informe o nome e ultimo nome do novo morador: \n");

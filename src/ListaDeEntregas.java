@@ -23,9 +23,9 @@ public class ListaDeEntregas {
 
     public ArrayList<Entrega> buscaPorDescricao(String descricao){
        ArrayList subLista = new ArrayList<Entrega>();
-
+       String descricaoTratada = descricao.toLowerCase();
         for (Entrega entrega : lista) {
-            if(entrega.getDescricao().contains(descricao)){
+            if(entrega.getDescricao().toLowerCase().contains(descricaoTratada)){
                 subLista.add(entrega);
             }
         }
