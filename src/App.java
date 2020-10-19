@@ -9,12 +9,14 @@ public class App {
     private ListaDeMoradores listaDeMoradores;
     private ListaDeOperadores listaDeOperadores;
     private ListaDeEntregas listaDeEntregas;
+    private ListaDeEntregas listaNaoRetirada;
     private Operador operadorAtual;
 
     public App() {
         listaDeMoradores = new ListaDeMoradores();
         listaDeOperadores = new ListaDeOperadores();
         listaDeEntregas = new ListaDeEntregas();
+        listaNaoRetirada = new ListaDeEntregas();;
         populaApp();
     }
 
@@ -73,7 +75,7 @@ public class App {
                     listaEntregasPorDescricao();
                     break;
                 case 6:
-
+                    listaNaoRetirada();
                     break;
                 case 7:
                     break;
@@ -155,6 +157,10 @@ public class App {
 
     private void listarEntregas(){
         System.out.println(listaDeEntregas);
+    }
+    
+    private void listaNaoRetirada(){
+        System.out.println(listaNaoRetirada);
     }
 
     private void listarMoradores() {
