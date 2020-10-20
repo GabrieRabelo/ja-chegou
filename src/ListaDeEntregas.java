@@ -20,6 +20,7 @@ public class ListaDeEntregas {
 
     public boolean Retirada(Entrega entrega, Morador moradorRetirada){
         if(entrega==null || moradorRetirada == null) return false;
+        if(entrega.getMoradorRetirada() != null || entrega.getDataRetirada() != null ) return false;
         entrega.setDataRetirada(LocalDateTime.now());
         entrega.setMoradorRetirada(moradorRetirada);
         return true;
