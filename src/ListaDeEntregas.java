@@ -18,6 +18,14 @@ public class ListaDeEntregas {
         return true;
     }
 
+    public boolean Retirada(Entrega entrega, Morador moradorRetirada){
+        if(entrega==null || moradorRetirada == null) return false;
+        if(entrega.getMoradorRetirada() != null || entrega.getDataRetirada() != null ) return false;
+        entrega.setDataRetirada(LocalDateTime.now());
+        entrega.setMoradorRetirada(moradorRetirada);
+        return true;
+    }
+
     public int getCount(){
         return count;
     }
@@ -46,11 +54,20 @@ public class ListaDeEntregas {
         return listaGerada;
     }
 
+    public Entrega buscaPorId(int id){
+        for(Entrega entrega : lista){
+            if (entrega.getId()==id) return entrega;
+        }
+        return null;
+    }
     @Override
     public String toString() {
         String ret = "===== Lista de Entregas =====\n";
         for (Entrega entrega : lista) {
-            ret += entrega + "\n";
+            ret += entrega;
+            if (entrega.getDataRetirada()!=null)
+                ret += " - Retirada: " + entrega.getDataRetirada() + " - Morador: " + entrega.getMoradorRetirada().getNome()+ "\n";
+            else ret += "- Retirada:                         " + " - Morador:                "+ "\n";
         }
         return  ret;
     }

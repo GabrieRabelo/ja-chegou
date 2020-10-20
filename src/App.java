@@ -70,7 +70,7 @@ public class App {
                     break;
 
                 case 4:
-
+                    registraRetirada();
                     break;
 
                 case 5:
@@ -133,6 +133,20 @@ public class App {
         System.out.println("Informe o apartamento de destino\n");
         String apDestino = in.nextLine();
         listaDeEntregas.adicionaEntrega(new Entrega(descricao,apDestino,listaDeEntregas.getCount(), operadorAtual));
+    }
+
+    private void registraRetirada() {
+        System.out.println("Informe o id da entrega\n");
+        int idRetirada = in.nextInt();
+        System.out.println("Informe o RG do morador\n");
+        long rgRetirada = in.nextLong();
+        Morador recebido = listaDeMoradores.buscaPorRG(rgRetirada);
+        Entrega aux = listaDeEntregas.buscaPorId(idRetirada);
+        if(listaDeEntregas.Retirada(aux,recebido))
+            System.out.println("Retirada realizada com sucesso\n");
+        else {
+            System.out.println("ERRO: Retirada já realizada");
+        }
     }
 
     private void listaEntregasPorDescricao(){
@@ -249,6 +263,7 @@ public class App {
         populaOperadores();
         populaOperadorAtual();
         populaEntregas();
+        populaRetiradas();
     }
 
     private void populaOperadorAtual(){
@@ -272,7 +287,7 @@ public class App {
     }
 
     private void populaEntregas(){
-        Entrega caixaDeFerramentas = new Entrega("Caixa de ferramentas","34",listaDeEntregas.getCount(), operadorAtual);
+        Entrega caixaDeFerramentas = new Entrega("Caixa de ferramentas","23",listaDeEntregas.getCount(), listaDeOperadores.getOperadorInicial("RR"));
         caixaDeFerramentas.setData(LocalDateTime.of(2020,5,18,15,02));
         listaDeEntregas.adicionaEntrega(caixaDeFerramentas);
 
@@ -291,7 +306,32 @@ public class App {
         Entrega bicicleta = new Entrega("Bicicleta","24",listaDeEntregas.getCount(),listaDeOperadores.getOperadorInicial("GR"));
         bicicleta.setData(LocalDateTime.of(2020,10,10,16,45));
         listaDeEntregas.adicionaEntrega(bicicleta);
+
+        Entrega calcado = new Entrega("Calçado","23",listaDeEntregas.getCount(),listaDeOperadores.getOperadorInicial("LR"));
+        bicicleta.setData(LocalDateTime.of(2020,10,15,20,5));
+        listaDeEntregas.adicionaEntrega(calcado);
+
+        System.out.println("Foram adicionadas " + listaDeEntregas.getCount() + " entregas na lista de entregas.");
     }
+
+    private void populaRetiradas(){
+        Morador retirado = listaDeMoradores.buscaPorRG(2353433423L);
+        Entrega aux = listaDeEntregas.buscaPorId(1);
+        aux.setMoradorRetirada(retirado);
+        aux.setDataRetirada(LocalDateTime.of(2020,5,26,9,10));
+
+        Morador retirado1 = listaDeMoradores.buscaPorRG(3464224754L);
+        Entrega aux1 = listaDeEntregas.buscaPorId(5);
+        aux1.setMoradorRetirada(retirado1);
+        aux1.setDataRetirada(LocalDateTime.of(2020,10,11,8,15));
+
+        Morador retirado2 = listaDeMoradores.buscaPorRG(3246863534L);
+        Entrega aux2 = listaDeEntregas.buscaPorId(4);
+        aux2.setMoradorRetirada(retirado2);
+        aux2.setDataRetirada(LocalDateTime.of(2020,8,21,19,03));
+
+    }
+
     private void populaLista(){
         Morador velloso = new Morador("Gabriel Velloso" , 3464224754L, 24);
         Morador rabelo = new Morador("Gabriel Rabelo", 3456353333L, 12);
