@@ -36,7 +36,14 @@ public class ListaDeEntregas {
     public String geraListaComIntervaloDeData(int mesInicial, int diaInicial, int mesFinal, int diaFinal){
         LocalDateTime dataInicio = LocalDateTime.of(2020, mesInicial, diaInicial, 00,00);
         LocalDateTime dataFinal = LocalDateTime.of(2020, mesFinal, diaFinal, 23,59);
-        return "mês inicial: " + mesInicial + " dia inicial: " + diaInicial + " mês final: " + mesFinal + "dia final" + diaFinal + dataInicio + dataFinal;
+        String listaGerada = "====== Lista de Entregas ======\n";
+        for (Entrega entrega : lista) {
+            if (entrega.getData().isAfter(dataInicio) && entrega.getData().isBefore(dataFinal)){
+                listaGerada = listaGerada + entrega + "\n";
+            }
+        }
+
+        return listaGerada;
     }
 
     @Override
