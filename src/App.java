@@ -214,10 +214,7 @@ public class App {
             }
         }
 
-        System.out.println("Mês inicial: " + mesInicio);
-        System.out.println("Dia inicial: " + diaInicio);
-        System.out.println("Mês final: " + mesFinal);
-        System.out.println("Dia final: " + diaFinal);
+        System.out.println(listaDeEntregas.geraListaComIntervaloDeData(mesInicio,diaInicio,mesFinal,diaFinal));
 
     }
 

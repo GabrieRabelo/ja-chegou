@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class ListaDeEntregas {
 
@@ -30,6 +31,12 @@ public class ListaDeEntregas {
             }
         }
         return subLista;
+    }
+
+    public String geraListaComIntervaloDeData(int mesInicial, int diaInicial, int mesFinal, int diaFinal){
+        LocalDateTime dataInicio = LocalDateTime.of(2020, mesInicial, diaInicial, 00,00);
+        LocalDateTime dataFinal = LocalDateTime.of(2020, mesFinal, diaFinal, 23,59);
+        return "mês inicial: " + mesInicial + " dia inicial: " + diaInicial + " mês final: " + mesFinal + "dia final" + diaFinal + dataInicio + dataFinal;
     }
 
     @Override
