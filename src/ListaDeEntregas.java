@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ListaDeEntregas {
@@ -14,6 +15,13 @@ public class ListaDeEntregas {
         if (novaEntrega==null) return false;
         lista.add(novaEntrega);
         count ++;
+        return true;
+    }
+
+    public boolean Retirada(Entrega entrega, Morador moradorRetirada){
+        if(entrega==null || moradorRetirada == null) return false;
+        entrega.setDataRetirada(LocalDateTime.now());
+        entrega.setMoradorRetirada(moradorRetirada);
         return true;
     }
 
