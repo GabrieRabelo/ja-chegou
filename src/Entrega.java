@@ -59,6 +59,6 @@ public class Entrega {
 
     @Override
     public String toString() {
-        return "ID: " + id  + "- Data: " + data + " - Descricao: " + descricao + " - Apto: "+ apDestino + " - Operador: " + usuario.getIniciais();
+        return "ID: " + id  + "- Data: " + data + " - Descrição: " + descricao + " - Apto: "+ apDestino + " - Operador: " + usuario.getIniciais();
     }
 }

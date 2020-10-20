@@ -1,5 +1,5 @@
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class ListaDeEntregas {
 
@@ -39,6 +39,19 @@ public class ListaDeEntregas {
             }
         }
         return subLista;
+    }
+
+    public String geraListaComIntervaloDeData(int mesInicial, int diaInicial, int mesFinal, int diaFinal){
+        LocalDateTime dataInicio = LocalDateTime.of(2020, mesInicial, diaInicial, 00,00);
+        LocalDateTime dataFinal = LocalDateTime.of(2020, mesFinal, diaFinal, 23,59);
+        String listaGerada = "====== Lista de Entregas ======\n";
+        for (Entrega entrega : lista) {
+            if (entrega.getData().isAfter(dataInicio) && entrega.getData().isBefore(dataFinal)){
+                listaGerada = listaGerada + entrega + "\n";
+            }
+        }
+
+        return listaGerada;
     }
 
     public Entrega buscaPorId(int id){

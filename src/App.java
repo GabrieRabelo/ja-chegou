@@ -60,31 +60,42 @@ public class App {
                 case 1 :
                     escolheOperador();                
                     break;
+
                 case 2:
                     novoOperador();
                     break;
+
                 case 3:
                     registraEntrega();
                     break;
+
                 case 4:
                     registraRetirada();
                     break;
+
                 case 5:
                     listaEntregasPorDescricao();
                     break;
+
                 case 6:
 
                     break;
+
                 case 7:
+                    geraRelatorio();
                     break;
+
                 case 8:
                     novoMorador();
                     break;
+
                 case 9:
                     listarMoradores();
                     break;
+
                 case 0:     // Sai do menu, encerra programa
                     break;
+
                 default:
                     System.out.println("Opção inválida.");
             }
@@ -149,16 +160,88 @@ public class App {
         }
         }
 
+    private void geraRelatorio(){
+        int mesInicio = 0;
+        int diaInicio = 0;
+        int mesFinal = 0;
+        int diaFinal = 0;
+
+        while (mesInicio<1 || mesInicio>12){
+        System.out.println("Informe o mês da data inicial do relatório");
+        mesInicio = in.nextInt();
+        if (mesInicio<1 || mesInicio>12) System.out.println("Entrada inválida. Tente novamente.");
+        }
+
+        if (mesInicio == 1 || mesInicio == 3 || mesInicio == 5 || mesInicio == 7
+                || mesInicio == 8 || mesInicio == 10 || mesInicio == 12){
+        while (diaInicio<1 || diaInicio>31) {
+            System.out.println("Informe o dia da data inicial do relatório");
+            diaInicio = in.nextInt();
+            if (diaInicio<1 || diaInicio>31) System.out.println("Entrada inválida. Tente novamente.");
+        }
+        }
+
+        if (mesInicio == 4 || mesInicio == 6 || mesInicio == 9 || mesInicio == 11) {
+            while (diaInicio<1 || diaInicio>30) {
+                System.out.println("Informe o dia da data inicial do relatório");
+                diaInicio = in.nextInt();
+                if (diaInicio<1 || diaInicio>30) System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        if (mesInicio == 2) {
+            while (diaInicio<1 || diaInicio>28) {
+                System.out.println("Informe o dia da data inicial do relatório");
+                diaInicio = in.nextInt();
+                if (diaInicio<1 || diaInicio>28) System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        while (mesFinal<1 || mesFinal>12) {
+            System.out.println("Informe o mês da data final do relatório");
+            mesFinal = in.nextInt();
+            if (mesFinal<1 || mesFinal>12) System.out.println("Entrada inválida. Tente novamente.");
+        }
+
+        if (mesFinal == 1 || mesFinal == 3 || mesFinal == 5 || mesFinal == 7
+                || mesFinal == 8 || mesFinal == 10 || mesFinal == 12){
+            while (diaFinal<1 || diaFinal>31) {
+                System.out.println("Informe o dia da data final do relatório");
+                diaFinal = in.nextInt();
+                if (diaFinal<1 || diaFinal>31) System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        if (mesFinal == 4 || mesFinal == 6 || mesFinal == 9 || mesFinal == 11) {
+            while (diaFinal<1 || diaFinal>30) {
+                System.out.println("Informe o dia da data final do relatório");
+                diaFinal = in.nextInt();
+                if (diaFinal<1 || diaFinal>30) System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        if (mesFinal == 2) {
+            while (diaFinal<1 || diaFinal>28) {
+                System.out.println("Informe o dia da data final do relatório");
+                diaFinal = in.nextInt();
+                if (diaFinal<1 || diaFinal>28) System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        System.out.println(listaDeEntregas.geraListaComIntervaloDeData(mesInicio,diaInicio,mesFinal,diaFinal));
+
+    }
+
     private void novoMorador(){
-        System.out.println("Informe o nome e ultimo nome do novo morador: \n");
+        System.out.println("Informe o nome e último nome do novo morador: \n");
         String nome = in.nextLine();
         System.out.println("Informe o RG do morador: \n");
         long rg = in.nextLong();
-        System.out.println("Informe o numero do apartamento deste morador: \n");
+        System.out.println("Informe o número do apartamento deste morador: \n");
         int numAp = in.nextInt();
 
         if(rg < 1 || numAp < 1){
-            System.out.println("RG ou numero de apartamento invalido (Usar inteiro positivo).");
+            System.out.println("RG ou número de apartamento inválido (Usar inteiro positivo).");
         }else{
             listaDeMoradores.adicionaMorador(new Morador(nome,rg,numAp));
             System.out.println(nome + " adicionado a lista de Moradores\n");
@@ -190,7 +273,7 @@ public class App {
 
     private void populaOperadores(){
         Operador rabelo = new Operador("Gabriel Rabelo");
-        Operador roberto = new Operador("Roberto Resende");
+        Operador roberto = new Operador("Roberto Rezende");
         Operador adriana = new Operador("Adriana Serpa");
         Operador luiz = new Operador("Luiz Reis");
 
