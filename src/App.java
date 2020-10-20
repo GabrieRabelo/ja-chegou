@@ -67,7 +67,7 @@ public class App {
                     registraEntrega();
                     break;
                 case 4:
-
+                    registraRetirada();
                     break;
                 case 5:
                     listaEntregasPorDescricao();
@@ -122,6 +122,17 @@ public class App {
         System.out.println("Informe o apartamento de destino\n");
         String apDestino = in.nextLine();
         listaDeEntregas.adicionaEntrega(new Entrega(descricao,apDestino,listaDeEntregas.getCount(), operadorAtual));
+    }
+
+    private void registraRetirada() {
+        System.out.println("Informe o id da entrega\n");
+        int idRetirada = in.nextInt();
+        System.out.println("Informe o RG do morador\n");
+        long rgRetirada = in.nextLong();
+        Morador recebido = listaDeMoradores.buscaPorRG(rgRetirada);
+        Entrega aux = listaDeEntregas.buscaPorId(idRetirada);
+        aux.setMoradorRetirada(recebido);
+        aux.setDataRetirada(LocalDateTime.now());
     }
 
     private void listaEntregasPorDescricao(){
@@ -208,6 +219,8 @@ public class App {
         Entrega bicicleta = new Entrega("Bicicleta","24",listaDeEntregas.getCount(),listaDeOperadores.getOperadorInicial("GR"));
         bicicleta.setData(LocalDateTime.of(2020,10,10,16,45));
         listaDeEntregas.adicionaEntrega(bicicleta);
+
+        System.out.println("Foram adicionadas " + listaDeEntregas.getCount() + " entregas na lista de entregas.");
     }
     private void populaLista(){
         Morador velloso = new Morador("Gabriel Velloso" , 3464224754L, 24);
