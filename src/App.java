@@ -245,12 +245,7 @@ public class App {
 
         System.out.println("Informe o número do apartamento deste morador: \n");
         int numAp = in.nextInt();
-        while(rg < 1){
-            System.out.println("RG inválido (Usar inteiro positivo).");
-            rg = in.nextLong();
-        }
-
-        while (numAp < 1){
+        while(numAp < 1){
             System.out.println("Número de apartamento inválido (Usar inteiro positivo).");
             numAp = in.nextInt();
         }
