@@ -54,12 +54,23 @@ public class ListaDeEntregas {
         return listaGerada;
     }
 
+    public String buscaNaoRetiradas(){
+        String ret = "====== Lista de Entregas Não Retiradas ======\n";
+        for (Entrega entrega : lista) {
+            if (entrega.getDataRetirada() == null){
+                ret += entrega + "\n";
+            }
+        }
+        return ret;
+    }
+
     public Entrega buscaPorId(int id){
         for(Entrega entrega : lista){
             if (entrega.getId()==id) return entrega;
         }
         return null;
     }
+
     @Override
     public String toString() {
         String ret = "===== Lista de Entregas =====\n";

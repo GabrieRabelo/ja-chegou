@@ -78,7 +78,7 @@ public class App {
                     break;
 
                 case 6:
-
+                    listaNaoRetirada();
                     break;
 
                 case 7:
@@ -252,6 +252,10 @@ public class App {
 
     private void listarEntregas(){
         System.out.println(listaDeEntregas);
+    }
+    
+    private void listaNaoRetirada(){
+        System.out.println(listaDeEntregas.buscaNaoRetiradas());
     }
 
     private void listarMoradores() {
