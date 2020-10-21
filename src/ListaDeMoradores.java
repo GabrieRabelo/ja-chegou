@@ -18,6 +18,13 @@ public class ListaDeMoradores {
         return lista.size();
     }
 
+
+    public Morador buscaPorRG(long rgRetirada){
+        for (Morador morador : lista) {
+            if (morador.getRg()==rgRetirada)return morador;
+        }
+        return null;
+    }
     @Override
     public String toString() {
         String listaDeMoradores = "===== ListaDeMoradores =====\n";

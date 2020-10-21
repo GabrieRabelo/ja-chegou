@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class ListaDeEntregas {
 
@@ -17,6 +18,14 @@ public class ListaDeEntregas {
         return true;
     }
 
+    public boolean Retirada(Entrega entrega, Morador moradorRetirada){
+        if(entrega==null || moradorRetirada == null) return false;
+        if(entrega.getMoradorRetirada() != null || entrega.getDataRetirada() != null ) return false;
+        entrega.setDataRetirada(LocalDateTime.now());
+        entrega.setMoradorRetirada(moradorRetirada);
+        return true;
+    }
+
     public int getCount(){
         return count;
     }
@@ -32,20 +41,44 @@ public class ListaDeEntregas {
         return subLista;
     }
 
-    public ArrayList<Entrega> buscaNaoRetirada(ArrayList<Entrega> todasEntregas){
-        ArrayList<Entrega> naoRetirada = new ArrayList<>();
-        for (Entrega entrega : todasEntregas){
-            if(entrega.getData() == null)
-                naoRetirada.add(entrega);
+    public String geraListaComIntervaloDeData(int mesInicial, int diaInicial, int mesFinal, int diaFinal){
+        LocalDateTime dataInicio = LocalDateTime.of(2020, mesInicial, diaInicial, 00,00);
+        LocalDateTime dataFinal = LocalDateTime.of(2020, mesFinal, diaFinal, 23,59);
+        String listaGerada = "====== Lista de Entregas ======\n";
+        for (Entrega entrega : lista) {
+            if (entrega.getData().isAfter(dataInicio) && entrega.getData().isBefore(dataFinal)){
+                listaGerada = listaGerada + entrega + "\n";
+            }
         }
-        return naoRetirada;
+
+        return listaGerada;
+    }
+
+    public String buscaNaoRetiradas(){
+        String ret = "====== Lista de Entregas Não Retiradas ======\n";
+        for (Entrega entrega : lista) {
+            if (entrega.getDataRetirada() == null){
+                ret += entrega + "\n";
+            }
+        }
+        return ret;
+    }
+
+    public Entrega buscaPorId(int id){
+        for(Entrega entrega : lista){
+            if (entrega.getId()==id) return entrega;
+        }
+        return null;
     }
 
     @Override
     public String toString() {
         String ret = "===== Lista de Entregas =====\n";
         for (Entrega entrega : lista) {
-            ret += entrega + "\n";
+            ret += entrega;
+            if (entrega.getDataRetirada()!=null)
+                ret += " - Retirada: " + entrega.getDataRetirada() + " - Morador: " + entrega.getMoradorRetirada().getNome()+ "\n";
+            else ret += "- Retirada:                         " + " - Morador:                "+ "\n";
         }
         return  ret;
     }

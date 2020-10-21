@@ -9,14 +9,12 @@ public class App {
     private ListaDeMoradores listaDeMoradores;
     private ListaDeOperadores listaDeOperadores;
     private ListaDeEntregas listaDeEntregas;
-    private ListaDeEntregas listaNaoRetirada;
     private Operador operadorAtual;
 
     public App() {
         listaDeMoradores = new ListaDeMoradores();
         listaDeOperadores = new ListaDeOperadores();
         listaDeEntregas = new ListaDeEntregas();
-        listaNaoRetirada = new ListaDeEntregas();;
         populaApp();
     }
 
@@ -62,31 +60,42 @@ public class App {
                 case 1 :
                     escolheOperador();                
                     break;
+
                 case 2:
                     novoOperador();
                     break;
+
                 case 3:
                     registraEntrega();
                     break;
-                case 4:
 
+                case 4:
+                    registraRetirada();
                     break;
+
                 case 5:
                     listaEntregasPorDescricao();
                     break;
+
                 case 6:
                     listaNaoRetirada();
                     break;
+
                 case 7:
+                    geraRelatorio();
                     break;
+
                 case 8:
                     novoMorador();
                     break;
+
                 case 9:
                     listarMoradores();
                     break;
+
                 case 0:     // Sai do menu, encerra programa
                     break;
+
                 default:
                     System.out.println("Opção inválida.");
             }
@@ -126,6 +135,20 @@ public class App {
         listaDeEntregas.adicionaEntrega(new Entrega(descricao,apDestino,listaDeEntregas.getCount(), operadorAtual));
     }
 
+    private void registraRetirada() {
+        System.out.println("Informe o id da entrega\n");
+        int idRetirada = in.nextInt();
+        System.out.println("Informe o RG do morador\n");
+        long rgRetirada = in.nextLong();
+        Morador recebido = listaDeMoradores.buscaPorRG(rgRetirada);
+        Entrega aux = listaDeEntregas.buscaPorId(idRetirada);
+        if(listaDeEntregas.Retirada(aux,recebido))
+            System.out.println("Retirada realizada com sucesso\n");
+        else {
+            System.out.println("ERRO: Retirada já realizada");
+        }
+    }
+
     private void listaEntregasPorDescricao(){
         System.out.println("Informe a descrição para pesquisa da entrega:\n");
         String descricao = in.nextLine();
@@ -137,16 +160,88 @@ public class App {
         }
         }
 
+    private void geraRelatorio(){
+        int mesInicio = 0;
+        int diaInicio = 0;
+        int mesFinal = 0;
+        int diaFinal = 0;
+
+        while (mesInicio<1 || mesInicio>12){
+        System.out.println("Informe o mês da data inicial do relatório");
+        mesInicio = in.nextInt();
+        if (mesInicio<1 || mesInicio>12) System.out.println("Entrada inválida. Tente novamente.");
+        }
+
+        if (mesInicio == 1 || mesInicio == 3 || mesInicio == 5 || mesInicio == 7
+                || mesInicio == 8 || mesInicio == 10 || mesInicio == 12){
+        while (diaInicio<1 || diaInicio>31) {
+            System.out.println("Informe o dia da data inicial do relatório");
+            diaInicio = in.nextInt();
+            if (diaInicio<1 || diaInicio>31) System.out.println("Entrada inválida. Tente novamente.");
+        }
+        }
+
+        if (mesInicio == 4 || mesInicio == 6 || mesInicio == 9 || mesInicio == 11) {
+            while (diaInicio<1 || diaInicio>30) {
+                System.out.println("Informe o dia da data inicial do relatório");
+                diaInicio = in.nextInt();
+                if (diaInicio<1 || diaInicio>30) System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        if (mesInicio == 2) {
+            while (diaInicio<1 || diaInicio>28) {
+                System.out.println("Informe o dia da data inicial do relatório");
+                diaInicio = in.nextInt();
+                if (diaInicio<1 || diaInicio>28) System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        while (mesFinal<1 || mesFinal>12) {
+            System.out.println("Informe o mês da data final do relatório");
+            mesFinal = in.nextInt();
+            if (mesFinal<1 || mesFinal>12) System.out.println("Entrada inválida. Tente novamente.");
+        }
+
+        if (mesFinal == 1 || mesFinal == 3 || mesFinal == 5 || mesFinal == 7
+                || mesFinal == 8 || mesFinal == 10 || mesFinal == 12){
+            while (diaFinal<1 || diaFinal>31) {
+                System.out.println("Informe o dia da data final do relatório");
+                diaFinal = in.nextInt();
+                if (diaFinal<1 || diaFinal>31) System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        if (mesFinal == 4 || mesFinal == 6 || mesFinal == 9 || mesFinal == 11) {
+            while (diaFinal<1 || diaFinal>30) {
+                System.out.println("Informe o dia da data final do relatório");
+                diaFinal = in.nextInt();
+                if (diaFinal<1 || diaFinal>30) System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        if (mesFinal == 2) {
+            while (diaFinal<1 || diaFinal>28) {
+                System.out.println("Informe o dia da data final do relatório");
+                diaFinal = in.nextInt();
+                if (diaFinal<1 || diaFinal>28) System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        System.out.println(listaDeEntregas.geraListaComIntervaloDeData(mesInicio,diaInicio,mesFinal,diaFinal));
+
+    }
+
     private void novoMorador(){
-        System.out.println("Informe o nome e ultimo nome do novo morador: \n");
+        System.out.println("Informe o nome e último nome do novo morador: \n");
         String nome = in.nextLine();
         System.out.println("Informe o RG do morador: \n");
         long rg = in.nextLong();
-        System.out.println("Informe o numero do apartamento deste morador: \n");
+        System.out.println("Informe o número do apartamento deste morador: \n");
         int numAp = in.nextInt();
 
         if(rg < 1 || numAp < 1){
-            System.out.println("RG ou numero de apartamento invalido (Usar inteiro positivo).");
+            System.out.println("RG ou número de apartamento inválido (Usar inteiro positivo).");
         }else{
             listaDeMoradores.adicionaMorador(new Morador(nome,rg,numAp));
             System.out.println(nome + " adicionado a lista de Moradores\n");
@@ -160,7 +255,7 @@ public class App {
     }
     
     private void listaNaoRetirada(){
-        System.out.println(listaNaoRetirada);
+        System.out.println(listaDeEntregas.buscaNaoRetiradas());
     }
 
     private void listarMoradores() {
@@ -172,6 +267,7 @@ public class App {
         populaOperadores();
         populaOperadorAtual();
         populaEntregas();
+        populaRetiradas();
     }
 
     private void populaOperadorAtual(){
@@ -181,7 +277,7 @@ public class App {
 
     private void populaOperadores(){
         Operador rabelo = new Operador("Gabriel Rabelo");
-        Operador roberto = new Operador("Roberto Resende");
+        Operador roberto = new Operador("Roberto Rezende");
         Operador adriana = new Operador("Adriana Serpa");
         Operador luiz = new Operador("Luiz Reis");
 
@@ -195,7 +291,7 @@ public class App {
     }
 
     private void populaEntregas(){
-        Entrega caixaDeFerramentas = new Entrega("Caixa de ferramentas","34",listaDeEntregas.getCount(), operadorAtual);
+        Entrega caixaDeFerramentas = new Entrega("Caixa de ferramentas","23",listaDeEntregas.getCount(), listaDeOperadores.getOperadorInicial("RR"));
         caixaDeFerramentas.setData(LocalDateTime.of(2020,5,18,15,02));
         listaDeEntregas.adicionaEntrega(caixaDeFerramentas);
 
@@ -214,7 +310,32 @@ public class App {
         Entrega bicicleta = new Entrega("Bicicleta","24",listaDeEntregas.getCount(),listaDeOperadores.getOperadorInicial("GR"));
         bicicleta.setData(LocalDateTime.of(2020,10,10,16,45));
         listaDeEntregas.adicionaEntrega(bicicleta);
+
+        Entrega calcado = new Entrega("Calçado","23",listaDeEntregas.getCount(),listaDeOperadores.getOperadorInicial("LR"));
+        bicicleta.setData(LocalDateTime.of(2020,10,15,20,5));
+        listaDeEntregas.adicionaEntrega(calcado);
+
+        System.out.println("Foram adicionadas " + listaDeEntregas.getCount() + " entregas na lista de entregas.");
     }
+
+    private void populaRetiradas(){
+        Morador retirado = listaDeMoradores.buscaPorRG(2353433423L);
+        Entrega aux = listaDeEntregas.buscaPorId(1);
+        aux.setMoradorRetirada(retirado);
+        aux.setDataRetirada(LocalDateTime.of(2020,5,26,9,10));
+
+        Morador retirado1 = listaDeMoradores.buscaPorRG(3464224754L);
+        Entrega aux1 = listaDeEntregas.buscaPorId(5);
+        aux1.setMoradorRetirada(retirado1);
+        aux1.setDataRetirada(LocalDateTime.of(2020,10,11,8,15));
+
+        Morador retirado2 = listaDeMoradores.buscaPorRG(3246863534L);
+        Entrega aux2 = listaDeEntregas.buscaPorId(4);
+        aux2.setMoradorRetirada(retirado2);
+        aux2.setDataRetirada(LocalDateTime.of(2020,8,21,19,03));
+
+    }
+
     private void populaLista(){
         Morador velloso = new Morador("Gabriel Velloso" , 3464224754L, 24);
         Morador rabelo = new Morador("Gabriel Rabelo", 3456353333L, 12);
