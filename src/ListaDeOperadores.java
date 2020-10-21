@@ -30,6 +30,15 @@ public class ListaDeOperadores {
         return null;
     }
 
+    public boolean checaSeIniciaisJaExistem(String iniciais) {
+        for (Operador b : lista) {
+            if(b.getIniciais().equalsIgnoreCase(iniciais)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         String op = "";

@@ -1,16 +1,15 @@
 public class Operador{
-    private String name;
+    private String nome;
     private String iniciais;
 
     // cName para construtorName
-    public Operador(String cName){
-        this.name = cName;
-        String[] vetorInicial = cName.split(" ");
-        this.iniciais = String.valueOf(vetorInicial[0].charAt(0)) + String.valueOf(vetorInicial[1].charAt(0));
+    public Operador(String nome, String iniciais){
+        this.nome = nome;
+        this.iniciais = iniciais.toUpperCase();
     }
 
     public String getName(){
-        return name;
+        return nome;
     }
     public String getIniciais(){
         return iniciais;
@@ -18,6 +17,6 @@ public class Operador{
 
     @Override
     public String toString() {
-        return "Operador: " + name + " - Iniciais: " + iniciais;
+        return "Operador: " + nome + " - Iniciais: " + iniciais;
     }
 }

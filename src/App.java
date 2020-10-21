@@ -116,14 +116,16 @@ public class App {
     }
 
     private void novoOperador(){
-        System.out.println("Informe o nome e último nome do novo operador\n");
+        System.out.println("Informe o nome completo do novo operador\n");
         String nome = in.nextLine();
-        if(nome.split(" ").length == 2){
-            listaDeOperadores.add(new Operador(nome));
-            System.out.println(nome + " adicionado a lista de operadores\n");
+        System.out.println("Escolha as iniciais que esse operador irá usar");
+        String iniciais = in.nextLine().toUpperCase();
+        while (listaDeOperadores.checaSeIniciaisJaExistem(iniciais)){
+            System.out.println("Iniciais já em uso, por favor escolha outras iniciais.");
+            iniciais = in.nextLine().toUpperCase();
         }
-        else
-            System.out.println("Nome inválido.");
+        listaDeOperadores.add(new Operador(nome, iniciais));
+        System.out.println(nome + " adicionado a lista de operadores\n");
     }
 
 
@@ -276,10 +278,10 @@ public class App {
     }
 
     private void populaOperadores(){
-        Operador rabelo = new Operador("Gabriel Rabelo");
-        Operador roberto = new Operador("Roberto Rezende");
-        Operador adriana = new Operador("Adriana Serpa");
-        Operador luiz = new Operador("Luiz Reis");
+        Operador rabelo = new Operador("Gabriel Rabelo", "GR");
+        Operador roberto = new Operador("Roberto Rezende", "RR");
+        Operador adriana = new Operador("Adriana Serpa", "AS");
+        Operador luiz = new Operador("Luiz Reis", "LR");
 
         listaDeOperadores.add(rabelo);
         listaDeOperadores.add(roberto);
