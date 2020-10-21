@@ -235,20 +235,25 @@ public class App {
     }
 
     private void novoMorador(){
-        System.out.println("Informe o nome e último nome do novo morador: \n");
+        System.out.println("Informe o nome completo do novo morador: \n");
         String nome = in.nextLine();
+
         System.out.println("Informe o RG do morador: \n");
         long rg = in.nextLong();
+        while(rg < 1){
+            System.out.println("RG inválido (Usar inteiro positivo).");
+            rg = in.nextLong();
+        }
+
         System.out.println("Informe o número do apartamento deste morador: \n");
         int numAp = in.nextInt();
-
-        if(rg < 1 || numAp < 1){
-            System.out.println("RG ou número de apartamento inválido (Usar inteiro positivo).");
-        }else{
-            listaDeMoradores.adicionaMorador(new Morador(nome,rg,numAp));
-            System.out.println(nome + " adicionado a lista de Moradores\n");
-
+        while(numAp < 1){
+            System.out.println("Número de apartamento inválido (Usar inteiro positivo).");
+            numAp = in.nextInt();
         }
+
+        listaDeMoradores.adicionaMorador(new Morador(nome,rg,numAp));
+        System.out.println(nome + " adicionado a lista de Moradores\n");
 
     }
 
