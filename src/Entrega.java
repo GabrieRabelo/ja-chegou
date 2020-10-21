@@ -59,6 +59,11 @@ public class Entrega {
 
     @Override
     public String toString() {
+        if (moradorRetirada==null)
         return "ID: " + id  + "- Data: " + data + " - Descrição: " + descricao + " - Apto: "+ apDestino + " - Operador: " + usuario.getIniciais();
+        else
+            return "ID: " + id  + "- Data: " + data + " - Descrição: " + descricao + " - Apto: "
+                    + apDestino + " - Operador: " + usuario.getIniciais() + " - Retirada: " + getDataRetirada()
+                    + " - Morador: " + getMoradorRetirada();
     }
 }
